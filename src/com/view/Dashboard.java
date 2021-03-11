@@ -14,7 +14,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
@@ -161,19 +160,6 @@ public class Dashboard extends JFrame implements ActionListener{
 			}
 		}
 	}
-	
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Dashboard frame = new Dashboard();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	public Dashboard() {
 		initializeComponents();
@@ -183,7 +169,7 @@ public class Dashboard extends JFrame implements ActionListener{
 
 	private void initializeComponents(){
         currentState = new CurrentState();
-		
+        setTitle("UTuvcs");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		//Changes frame icon
@@ -375,9 +361,6 @@ public class Dashboard extends JFrame implements ActionListener{
 		boolean noTransition = false;
 		String prevState = currentState.getStateName();
 		
-		//Adds symbol to symbol list
-		symbol_textArea.append(String.valueOf(symbol.accept));
-		
 		
 		//Check if symbol entered moves transitions 
 		if(currentState.state.transition(symbol) == null)
@@ -443,18 +426,15 @@ public class Dashboard extends JFrame implements ActionListener{
 				}
 			}
 			
+			//Adds symbol to symbol list
+			symbol_textArea.append(String.valueOf(symbol.accept));
+			
 			changeCarControl(currentState.getStateName());
-
-		}else {
-			JOptionPane.showMessageDialog(this, 
-					"Oops.. Car needs another input.", 
-					"State Change",
-					JOptionPane.INFORMATION_MESSAGE);
-			noTransition = false;
 		}
 	}
 	
 	private void changeCarControl(String carState) {
+		
 		carState_lbl.setText(carState);
 		
 		if(currentState.state.accept)

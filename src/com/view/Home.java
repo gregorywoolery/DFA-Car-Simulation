@@ -1,14 +1,11 @@
-package com.main;
+package com.view;
 
 import java.awt.Dimension;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-import com.view.Dashboard;
 
 import java.awt.FlowLayout;
 import java.awt.Toolkit;
@@ -35,39 +32,30 @@ public class Home extends JFrame implements ActionListener {
 	JPanel splash_panel;
 	private JPanel contentPane;
 	private JLabel title_label;
+	private JPanel groupMemberPanel;
+	private JLabel gm1_lbl;
+	private JLabel gm2_lbl;
+	private JLabel gm3_lbl;
+	private JPanel holdSpace_panel;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Home frame = new Home();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the frame.
-	 */
 	public Home() {
 		initializeComponents();
 		registerListeners();
 	}
 	
+	/**
+	 * Create the frame.
+	 */
 	private void initializeComponents() {
+		setTitle("UTuvcs");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		//Changes frame icon
 		ImageIcon frameIcon = new ImageIcon("./Resources/img/Utech_logo.jpg");
 		setIconImage(frameIcon.getImage());
 		
-		setBounds(100, 100, 675, 500);
+		setBounds(100, 100, 675, 570);
 		
 
 		//Centers frame on screen
@@ -103,6 +91,40 @@ public class Home extends JFrame implements ActionListener {
 			myPicture = ImageIO.read(new File("./Resources/img/interior-1.jpg"));
 			JLabel picLabel = new JLabel(new ImageIcon(myPicture));
 			splash_panel.add(picLabel);
+			
+			holdSpace_panel = new JPanel();
+			holdSpace_panel.setBackground(new Color(0, 0, 51));
+			holdSpace_panel.setPreferredSize(new Dimension(500, 25));
+			contentPane.add(holdSpace_panel);
+			
+			groupMemberPanel = new JPanel();
+			groupMemberPanel.setBackground(new Color(0, 0, 51));
+			groupMemberPanel.setPreferredSize(new Dimension(600, 50));
+			contentPane.add(groupMemberPanel);
+			
+			gm1_lbl = new JLabel("<html><center>Gregory Woolery<br>1803376</center></html>");
+			gm1_lbl.setBackground(new Color(0, 0, 51));
+			gm1_lbl.setForeground(new Color(255, 255, 255));
+			gm1_lbl.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 14));
+			gm1_lbl.setHorizontalAlignment(SwingConstants.CENTER);
+			gm1_lbl.setPreferredSize(new Dimension(150, 40));
+			groupMemberPanel.add(gm1_lbl);
+			
+			gm2_lbl = new JLabel("<html><center>Mathew Ruddock<br>1700241</center></html>");
+			gm2_lbl.setBackground(new Color(0, 0, 51));
+			gm2_lbl.setForeground(new Color(255, 255, 255));
+			gm2_lbl.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 14));
+			gm2_lbl.setHorizontalAlignment(SwingConstants.CENTER);
+			gm2_lbl.setPreferredSize(new Dimension(150, 40));
+			groupMemberPanel.add(gm2_lbl);
+			
+			gm3_lbl = new JLabel("<html><center>Jowayne Jones<br>1807928</center></html>");
+			gm3_lbl.setBackground(new Color(0, 0, 51));
+			gm3_lbl.setForeground(new Color(255, 255, 255));
+			gm3_lbl.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 14));
+			gm3_lbl.setHorizontalAlignment(SwingConstants.CENTER);
+			gm3_lbl.setPreferredSize(new Dimension(150, 40));
+			groupMemberPanel.add(gm3_lbl);
 			
 		} catch (IOException e) {
 			System.out.print("Cannot load image");
